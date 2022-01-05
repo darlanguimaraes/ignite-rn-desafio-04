@@ -32,7 +32,10 @@ export function Dashboard() {
      * - call addRepository function sending inputText value;
      * - clean inputText value.
      */
+    addRepository(inputText);
     inputRef.current?.blur();
+
+    setInputText('');
   }
 
   function handleRepositoryPageNavigation(id: number) {
@@ -44,6 +47,9 @@ export function Dashboard() {
      *  repositoryId: id of the repository
      * })
      */
+    navigate('Repository', {
+      repositoryId: id
+    })
   }
 
   return (
@@ -62,6 +68,7 @@ export function Dashboard() {
                * changes:
                * onChangeText={YOUR CODE HERE}
                */
+              onChangeText={setInputText}
               onSubmitEditing={handleAddRepository}
               returnKeyType="send"
               autoCapitalize='none'
@@ -76,6 +83,7 @@ export function Dashboard() {
              * empty (use disabled prop to this):
              * disabled={CONDITION HERE}
              */
+            disabled={!inputText ? true : false}
             >
               <Icon name="search" size={20} />
             </InputButton>
